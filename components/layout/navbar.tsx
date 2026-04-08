@@ -20,7 +20,7 @@ function ChevronDownIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-4 w-4"
+      className="h-[1.05rem] w-[1.05rem]"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -69,7 +69,7 @@ export function Navbar() {
               key={item.label}
               href={item.href}
               className={cn(
-                "inline-flex items-center gap-1 rounded-full px-4 py-6 text-sm font-semibold text-foreground/80 transition-colors",
+                "inline-flex items-center gap-1.5 rounded-full px-4 py-6 text-base font-semibold text-foreground/80 transition-colors xl:text-[1.05rem]",
                 "hover:text-foreground"
               )}
             >
