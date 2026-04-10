@@ -52,24 +52,24 @@ function PhoneIcon() {
 export function Navbar() {
   return (
     <header className="w-full">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 rounded-[32px] border border-white/70 bg-white/90 px-5 py-4 shadow-[0_18px_40px_rgba(22,27,45,0.08)] backdrop-blur md:px-8">
+      <div className="mx-auto flex max-w-[60rem] items-center justify-between gap-5 rounded-[1.65rem] border border-[#ece9e2] bg-white/96 px-6 py-5 shadow-[0_10px_26px_rgba(17,17,17,0.08)] backdrop-blur md:px-10">
         <Link href="/" className="flex items-center gap-3">
           <BrandMark />
-          <div className="flex items-center gap-1 text-[1.85rem] leading-none tracking-[-0.04em]">
-            <span className="font-heading font-semibold text-foreground">alo</span>
-            <span className="font-sans text-[1.55rem] font-medium text-foreground/90">
+          <div className="flex items-center gap-1 text-[1.5rem] leading-none tracking-[-0.045em]">
+            <span className="font-heading font-medium text-foreground">alo</span>
+            <span className="font-sans text-[1.42rem] font-normal text-foreground/90">
               infotech
             </span>
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-2 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {navbarItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full px-4 py-6 text-base font-semibold text-foreground/80 transition-colors xl:text-[1.05rem]",
+                "inline-flex items-center gap-1 rounded-full px-1 py-2 text-[1.02rem] font-normal text-foreground/88 transition-colors",
                 "hover:text-foreground"
               )}
             >
@@ -81,7 +81,7 @@ export function Navbar() {
 
         <ButtonLink
           href="#contact"
-          className="min-w-[168px] shrink-0 bg-[#111111] text-white hover:bg-black"
+          className="h-[3rem] min-w-[7.4rem] shrink-0 rounded-[0.7rem] bg-[#111111] px-4 text-[0.96rem] font-normal text-white shadow-none hover:bg-black"
         >
           <span className="text-white">Book a call</span>
           <PhoneIcon />

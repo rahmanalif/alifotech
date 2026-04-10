@@ -1,24 +1,33 @@
 import Link from "next/link";
 
-const servicesLinks = [
-  "AI Services",
-  "Web Development",
-  "IT Consulting",
-  "Mobile App Development",
-  "Digital Marketing",
-  "Block Chain",
+const serviceLinks = [
+  { label: "AI Services", href: "#contact" },
+  { label: "Web Development", href: "#contact" },
+  { label: "IT Consulting", href: "#contact" },
+  { label: "Mobile App Development", href: "#contact" },
+  { label: "Digital Marketing", href: "#contact" },
+  { label: "Block Chain", href: "#contact" },
 ];
 
-const companyLinks = ["About us", "Careers", "Contact us"];
-const legalLinks = ["Privacy Policy", "Terms & Conditions", "Refund Policy"];
+const companyLinks = [
+  { label: "About us", href: "#about" },
+  { label: "Careers", href: "#careers" },
+  { label: "Contact us", href: "#contact" },
+];
 
-function FooterMark() {
+const legalLinks = [
+  { label: "Privacy Policy", href: "#" },
+  { label: "Terms & Conditions", href: "#" },
+  { label: "Refund Policy", href: "#" },
+];
+
+function FooterLogo() {
   return (
-    <div className="relative h-20 w-20">
-      <span className="absolute left-0 top-0 h-9 w-9 rounded-tl-[28px] rounded-br-[28px] bg-white" />
-      <span className="absolute right-0 top-0 h-9 w-9 rounded-tr-[28px] rounded-bl-[28px] bg-white" />
-      <span className="absolute left-0 bottom-0 h-9 w-9 rounded-tr-[28px] rounded-bl-[28px] bg-white" />
-      <span className="absolute right-0 bottom-0 h-9 w-9 rounded-tl-[28px] rounded-br-[28px] bg-white" />
+    <div className="relative h-[4.4rem] w-[4.4rem]">
+      <span className="absolute left-0 top-0 h-8 w-8 rounded-tl-[1.5rem] rounded-br-[1.5rem] bg-white" />
+      <span className="absolute right-0 top-0 h-8 w-8 rounded-tr-[1.5rem] rounded-bl-[1.5rem] bg-white" />
+      <span className="absolute bottom-0 left-0 h-8 w-8 rounded-tr-[1.5rem] rounded-bl-[1.5rem] bg-white" />
+      <span className="absolute bottom-0 right-0 h-8 w-8 rounded-tl-[1.5rem] rounded-br-[1.5rem] bg-white" />
     </div>
   );
 }
@@ -28,7 +37,7 @@ function ArrowUpIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-6 w-6"
+      className="h-5 w-5"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
@@ -41,112 +50,144 @@ function ArrowUpIcon() {
   );
 }
 
-function SocialIcon({ label }: { label: string }) {
+function DotLabel({ label }: { label: string }) {
+  return (
+    <h5 className="flex items-center gap-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-white/45">
+      <span className="grid h-[0.95rem] w-[0.95rem] place-items-center rounded-full">
+        <span className="h-[0.32rem] w-[0.32rem] rounded-full bg-white/60" />
+      </span>
+      {label}
+    </h5>
+  );
+}
+
+function FooterColumn({
+  items,
+}: {
+  items: Array<{ label: string; href: string }>;
+}) {
+  return (
+    <div className="space-y-4">
+      {items.map((item) => (
+        <Link
+          key={item.label}
+          href={item.href}
+          className="block text-[0.9rem] text-white/72 transition-colors hover:text-white"
+        >
+          <p>{item.label}</p>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+function SocialIcon({
+  href,
+  label,
+}: {
+  href: string;
+  label: string;
+}) {
   return (
     <Link
-      href="#"
-      className="text-xl font-semibold text-white/95 transition-opacity hover:opacity-70"
+      target="_blank"
+      href={href}
+      className="flex text-[1rem] text-white transition-opacity hover:opacity-75"
     >
       {label}
     </Link>
   );
 }
 
-function FooterLinks({
-  title,
-  items,
-}: {
-  title?: string;
-  items: string[];
-}) {
-  return (
-    <div className="space-y-5">
-      {title ? (
-        <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/40">
-          {title}
-        </h3>
-      ) : null}
-      <div className="space-y-4">
-        {items.map((item) => (
-          <Link
-            key={item}
-            href="#"
-            className="block text-[1rem] text-white/72 transition-colors hover:text-white"
-          >
-            {item}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export function SiteFooterSection() {
   return (
     <footer className="bg-background pb-10 pt-4">
-      <div className="mx-auto max-w-[calc(100%-3rem)] rounded-[18px] bg-[#1f1a1a] px-5 py-6 text-white shadow-[0_22px_55px_rgba(0,0,0,0.14)] sm:px-8 sm:py-8 lg:px-12 lg:py-10">
-        <div className="flex items-start justify-between gap-6">
-          <div className="relative">
-            <FooterMark />
-            <div className="absolute left-10 top-[-14px] h-6 w-6 rounded-full bg-white/22" />
-          </div>
+      <div className="mx-auto max-w-[calc(100%-2rem)] rounded-[0.55rem] bg-[#1f1b1b] px-5 py-6 text-white shadow-[0_18px_44px_rgba(0,0,0,0.14)] sm:px-8 sm:py-8 lg:max-w-[calc(100%-3rem)] lg:px-12 lg:py-10">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr]">
+          <div className="space-y-8">
+            <Link href="/">
+              <FooterLogo />
+            </Link>
 
-          <Link
-            href="#about"
-            className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-[#1f1a1a] transition-transform hover:-translate-y-0.5"
-          >
-            <ArrowUpIcon />
-          </Link>
-        </div>
-
-        <div className="mt-4 grid gap-10 lg:grid-cols-[1.2fr_0.9fr]">
-          <div className="space-y-14">
-            <h2 className="max-w-4xl font-heading text-[2.4rem] font-medium leading-[1.35] tracking-[-0.04em] text-white sm:text-[2.9rem]">
+            <h2 className="max-w-[28rem] font-heading text-[2rem] font-medium leading-[1.35] tracking-[-0.04em] text-white sm:text-[2.2rem]">
               Want to know how ALO Info-Tech can take your business to the next
               level with strategic solutions?
             </h2>
+          </div>
 
-            <div className="space-y-10">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-white/42">
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/45" />
-                  <span>Contact Us</span>
-                </div>
-                <div className="space-y-1 text-[1.05rem] text-white">
-                  <p>+91 99947 25508</p>
-                  <p>contact@aloinfotech.in</p>
-                </div>
+          <div className="space-y-8">
+            <div className="flex justify-end">
+              <Link
+                href="#about"
+                className="grid h-10 w-10 place-items-center rounded-full bg-white text-[#1f1b1b] transition-transform hover:-translate-y-0.5"
+              >
+                <ArrowUpIcon />
+              </Link>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-[0.95fr_1.05fr]">
+              <FooterColumn items={serviceLinks} />
+
+              <div className="grid gap-8 sm:grid-cols-2">
+                <FooterColumn items={companyLinks} />
+                <FooterColumn items={legalLinks} />
               </div>
+            </div>
+          </div>
+        </div>
 
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-white/42">
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/45" />
-                  <span>Location</span>
-                </div>
-                <div className="space-y-1 text-[1.05rem] text-white">
+        <div className="mt-12 grid gap-8 border-t border-white/8 pt-8 lg:grid-cols-[1.1fr_0.8fr_auto] lg:items-end">
+          <div className="grid gap-8 sm:grid-cols-2">
+            <div className="space-y-4">
+              <DotLabel label="Contact Us" />
+              <div className="space-y-1">
+                <Link href="tel:+919994725508" className="block text-[0.95rem] text-white">
+                  <p>+91 99947 25508</p>
+                </Link>
+                <Link
+                  target="_blank"
+                  href="mailto:contact@aloinfotech.in"
+                  className="block text-[0.95rem] text-white"
+                >
+                  <p>contact@aloinfotech.in</p>
+                </Link>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <DotLabel label="Location" />
+              <Link
+                target="_blank"
+                href="https://maps.app.goo.gl/EAbwPEvZU6ngWpSs8"
+                className="block text-[0.95rem] text-white"
+              >
+                <div>
                   <p>Chunkankadai Jn, Nagercoil,</p>
                   <p>Kanniyakumari,</p>
                   <p>629003</p>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
 
-          <div className="grid gap-10 pt-6 sm:grid-cols-3 lg:pt-12">
-            <FooterLinks items={servicesLinks} />
-            <FooterLinks items={companyLinks} />
-            <FooterLinks items={legalLinks} />
+          <div className="flex items-center gap-5 lg:justify-center">
+            <SocialIcon
+              href="https://www.facebook.com/profile.php?id=100092521095313&mibextid=eHce3h"
+              label="f"
+            />
+            <SocialIcon
+              href="https://www.instagram.com/alo_info_tech?igsh=ZGNjOWZkYTE3MQ=="
+              label="◎"
+            />
+            <SocialIcon
+              href="https://www.linkedin.com/company/alo-info-tech/"
+              label="in"
+            />
           </div>
-        </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-6 border-t border-white/8 pt-8 sm:flex-row">
-          <div className="flex items-center gap-6">
-            <SocialIcon label="f" />
-            <SocialIcon label="◎" />
-            <SocialIcon label="in" />
+          <div className="lg:text-right">
+            <p className="text-[0.9rem] text-white">copyrights@aloinfotech2026</p>
           </div>
-
-          <p className="text-[1rem] text-white">copyrights@aloinfotech2026</p>
         </div>
       </div>
     </footer>

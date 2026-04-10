@@ -1,164 +1,146 @@
-import { ButtonLink } from "@/components/ui/button";
+import Link from "next/link";
+
 import { cn } from "@/lib/utils";
 
 type ServiceCard = {
+  id: number;
   title: string;
   description: string;
   href: string;
-  variant?: "text" | "feature-left" | "feature-right";
-  desktopClassName?: string;
+  tone: "ai" | "mobile" | "web" | "blockchain" | "marketing" | "consulting";
 };
 
 const serviceCards: ServiceCard[] = [
   {
+    id: 1,
     title: "AI services",
     description:
       "We provide innovative AI services transforming businesses with intelligent solutions.",
     href: "#contact",
-    desktopClassName: "lg:col-span-3",
+    tone: "ai",
   },
   {
+    id: 2,
     title: "Mobile App Development",
     description:
       "Custom mobile apps built to deliver smooth user-friendly digital experiences.",
     href: "#contact",
-    variant: "feature-right",
-    desktopClassName: "lg:col-span-6",
+    tone: "mobile",
   },
   {
+    id: 3,
     title: "Website development",
     description:
       "Professional website development ensures responsive, engaging and performance-driven platforms.",
     href: "#contact",
-    desktopClassName: "lg:col-span-3",
+    tone: "web",
   },
   {
+    id: 4,
     title: "Blockchain development",
     description:
       "Secure blockchain development empowering businesses with transparency and trust.",
     href: "#contact",
-    variant: "feature-left",
-    desktopClassName: "lg:col-span-6",
+    tone: "blockchain",
   },
   {
+    id: 5,
     title: "Digital marketing",
     description:
       "Boost your brand visibility and engagement with effective digital marketing.",
     href: "#contact",
-    desktopClassName: "lg:col-span-3",
+    tone: "marketing",
   },
   {
-    title: "IT consulting",
+    id: 6,
+    title: "It consulting",
     description:
       "Expert IT consulting guiding enterprises toward growth, efficiency and innovation.",
     href: "#contact",
-    desktopClassName: "lg:col-span-3",
+    tone: "consulting",
   },
 ];
 
-function DotIndicator() {
+function ServiceImage({ tone }: { tone: ServiceCard["tone"] }) {
+  const shellClass =
+    tone === "ai"
+      ? "bg-[linear-gradient(150deg,#d9c4a5_0%,#efe5ce_42%,#baa587_100%)]"
+      : tone === "mobile"
+        ? "bg-[linear-gradient(150deg,#10151d_0%,#1d2731_45%,#30404f_100%)]"
+        : tone === "web"
+          ? "bg-[linear-gradient(150deg,#132533_0%,#244654_45%,#5f8594_100%)]"
+          : tone === "blockchain"
+            ? "bg-[linear-gradient(150deg,#0f1720_0%,#1b2c3b_45%,#406272_100%)]"
+            : tone === "marketing"
+              ? "bg-[linear-gradient(150deg,#9a6b3f_0%,#d49b63_45%,#efd4aa_100%)]"
+              : "bg-[linear-gradient(150deg,#15212b_0%,#233543_45%,#5d7385_100%)]";
+
   return (
-    <div className="flex items-center justify-center gap-5">
-      <span className="h-2.5 w-2.5 rounded-full bg-black" />
-      <span className="h-7 w-7 rounded-full bg-black/16" />
+    <div className={cn("relative h-full min-h-[9rem] overflow-hidden rounded-[0.72rem]", shellClass)}>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="absolute inset-x-0 bottom-0 h-12 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.22))]" />
+      <div className="absolute left-5 top-6 h-12 w-8 rounded-[0.35rem] bg-black/26" />
+      <div className="absolute left-[3.3rem] top-5 h-14 w-10 rounded-[0.35rem] bg-black/22" />
+      <div className="absolute left-[5.9rem] top-7 h-10 w-7 rounded-[0.35rem] bg-black/24" />
+      <div className="absolute left-[2.8rem] top-4 h-[5.2rem] w-[7rem] rounded-[0.45rem] border border-white/12 bg-black/18" />
+      <div className="absolute right-5 top-5 h-6 w-6 rounded-full bg-white/12" />
+      <div className="absolute bottom-5 left-5 h-1.5 w-16 rounded-full bg-white/55" />
+      <div className="absolute bottom-5 left-24 h-1.5 w-10 rounded-full bg-white/35" />
     </div>
   );
 }
 
-function ServicePreview({ tone = "violet" }: { tone?: "violet" | "cyan" }) {
-  const isViolet = tone === "violet";
-
+function ServiceCard({ card }: { card: ServiceCard }) {
   return (
-    <div
-      className={cn(
-        "relative h-[200px] overflow-hidden rounded-[16px] border border-white/15",
-        isViolet
-          ? "bg-[radial-gradient(circle_at_top,rgba(221,82,255,0.24),transparent_32%),linear-gradient(160deg,#0f1625_0%,#111827_55%,#1f2937_100%)]"
-          : "bg-[radial-gradient(circle_at_top,rgba(76,217,255,0.2),transparent_36%),linear-gradient(160deg,#0b1320_0%,#122033_55%,#1f2937_100%)]"
-      )}
+    <Link
+      href={card.href}
+      className="grid min-h-[9.2rem] grid-cols-[1.05fr_0.95fr] gap-3 rounded-[0.9rem] border border-black/6 bg-white p-3 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition-transform hover:-translate-y-0.5"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:52px_52px]" />
-      <div className="absolute left-8 top-12 h-20 w-16 rounded-[14px] border border-cyan-300/30 bg-slate-900/75 shadow-[0_15px_30px_rgba(0,0,0,0.35)]" />
-      <div className="absolute left-30 top-10 h-26 w-20 rounded-[14px] border border-fuchsia-300/25 bg-slate-900/78 shadow-[0_15px_30px_rgba(0,0,0,0.35)]" />
-      <div className="absolute right-24 top-12 h-24 w-18 rounded-[14px] border border-sky-300/25 bg-slate-900/76 shadow-[0_15px_30px_rgba(0,0,0,0.35)]" />
-      <div className="absolute right-8 top-16 h-22 w-18 rounded-[14px] border border-cyan-300/25 bg-slate-950/82 shadow-[0_15px_30px_rgba(0,0,0,0.35)]" />
-      <div className="absolute left-6 bottom-4 h-14 w-8 rounded-t-[10px] bg-slate-800/95" />
-      <div className="absolute left-16 bottom-4 h-16 w-9 rounded-t-[10px] bg-slate-700/95" />
-      <div className="absolute left-28 bottom-4 h-18 w-10 rounded-t-[10px] bg-slate-800/95" />
-      <div className="absolute right-28 bottom-4 h-16 w-9 rounded-t-[10px] bg-slate-800/95" />
-      <div className="absolute right-16 bottom-4 h-18 w-10 rounded-t-[10px] bg-slate-700/95" />
-      <div className="absolute right-6 bottom-4 h-14 w-8 rounded-t-[10px] bg-slate-800/95" />
-    </div>
-  );
-}
-
-function ServiceCard({ card, index }: { card: ServiceCard; index: number }) {
-  const isFeatured = card.variant === "feature-left" || card.variant === "feature-right";
-
-  return (
-    <article
-      className={cn(
-        "rounded-[22px] border border-black/6 bg-white p-5 shadow-[0_14px_30px_rgba(22,27,45,0.08)] sm:p-6",
-        card.desktopClassName
-      )}
-    >
-      <div
-        className={cn(
-          "flex h-full gap-6",
-          card.variant === "feature-right" && "flex-col lg:flex-row",
-          card.variant === "feature-left" && "flex-col lg:flex-row-reverse",
-          !isFeatured && "flex-col"
-        )}
-      >
-        <div className={cn("flex min-w-0 flex-1 flex-col", isFeatured && "justify-between")}>
-          <div className="space-y-5">
-            <h3 className="font-heading text-[1.28rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.45rem]">
-              {card.title}
-            </h3>
-            <p className="max-w-[26ch] text-[1rem] leading-8 text-muted">
-              {card.description}
-            </p>
-          </div>
-
-          <ButtonLink
-            href={card.href}
-            variant="ghost"
-            className="mt-8 h-auto justify-start rounded-none px-0 py-0 text-[1rem] font-semibold text-foreground hover:bg-transparent hover:text-foreground"
-          >
-            Explore more
-            <span aria-hidden="true">→</span>
-          </ButtonLink>
+      <div className="flex flex-col justify-between gap-4 p-1">
+        <div className="space-y-3">
+          <h3 className="font-heading text-[0.95rem] font-semibold tracking-[-0.03em] text-foreground">
+            {card.title}
+          </h3>
+          <p className="text-[0.67rem] leading-5 text-muted">{card.description}</p>
         </div>
 
-        {isFeatured ? (
-          <div className="w-full lg:max-w-[50%]">
-            <ServicePreview tone={index % 2 === 0 ? "violet" : "cyan"} />
-          </div>
-        ) : null}
+        <span className="text-[0.73rem] font-medium text-foreground">
+          Explore more <span aria-hidden="true">→</span>
+        </span>
       </div>
-    </article>
+
+      <div className="min-h-full">
+        <ServiceImage tone={card.tone} />
+      </div>
+    </Link>
   );
 }
 
 export function ServicesOverviewSection() {
+  const firstRow = serviceCards.slice(0, 3);
+  const secondRow = serviceCards.slice(3, 6);
+
   return (
-    <section className="bg-background pb-24 pt-8">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-[2.75rem] font-semibold tracking-[-0.05em] text-foreground sm:text-[3.1rem]">
+    <section id="services" className="scroll-mt-32 bg-background pb-22 pt-10">
+      <div className="mx-auto max-w-[68rem] px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h2 className="font-heading text-[2.35rem] font-medium tracking-[-0.05em] text-foreground sm:text-[2.8rem]">
             What we do?
           </h2>
-          <p className="mt-4 text-[1rem] text-muted sm:text-[1.1rem]">
+          <p className="mt-3 text-[0.96rem] text-muted sm:text-[1rem]">
             Innovative Solutions for Digital Excellence
           </p>
-          <div className="mt-8">
-            <DotIndicator />
-          </div>
         </div>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-12">
-          {serviceCards.map((card, index) => (
-            <ServiceCard key={card.title} card={card} index={index} />
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          {firstRow.map((card) => (
+            <ServiceCard key={card.id} card={card} />
+          ))}
+        </div>
+
+        <div className="mt-4 grid gap-4 lg:grid-cols-3">
+          {secondRow.map((card) => (
+            <ServiceCard key={card.id} card={card} />
           ))}
         </div>
       </div>

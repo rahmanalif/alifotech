@@ -1,10 +1,11 @@
-import { ButtonLink } from "@/components/ui/button";
+import Link from "next/link";
 
 type ProductCard = {
   title: string;
   description: string;
   href: string;
-  tone: "sunset" | "orange" | "blue";
+  tone: "alora" | "fastx" | "invoice";
+  target?: string;
 };
 
 const productCards: ProductCard[] = [
@@ -12,113 +13,99 @@ const productCards: ProductCard[] = [
     title: "Alora",
     description: "Your smart chat companion simplifying ordering and tracking daily.",
     href: "#contact",
-    tone: "sunset",
+    tone: "alora",
   },
   {
     title: "Fastx",
     description: "Fast, reliable food delivery app offering seamless user experiences.",
-    href: "#contact",
-    tone: "orange",
+    href: "https://play.google.com/store/apps/details?id=com.fastx.consumer",
+    tone: "fastx",
+    target: "__",
   },
   {
     title: "Alo Invoice",
     description: "Effortlessly create, manage and track your invoices smartly.",
-    href: "#contact",
-    tone: "blue",
+    href: "https://play.google.com/store/apps/details?id=com.alo_invoice.restaurant",
+    tone: "invoice",
+    target: "___",
   },
 ];
 
-function ProductPreview({ tone }: { tone: ProductCard["tone"] }) {
-  if (tone === "sunset") {
+function ProductImage({ tone }: { tone: ProductCard["tone"] }) {
+  if (tone === "alora") {
     return (
-      <div className="relative h-[208px] overflow-hidden rounded-[22px] bg-[linear-gradient(135deg,#f37a2d_0%,#ef6c32_35%,#ea5e4f_70%,#e74b5a_100%)]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.16),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_30%)]" />
-        <div className="absolute left-9 top-16 h-[128px] w-[78px] rounded-[14px] border border-white/55 bg-white/92 shadow-[0_16px_30px_rgba(0,0,0,0.18)]" />
-        <div className="absolute left-1/2 top-5 h-[140px] w-[152px] -translate-x-1/2 rounded-[16px] border border-white/25 bg-white/14 backdrop-blur-sm" />
-        <div className="absolute right-8 top-8 h-[44px] w-[44px] rounded-full bg-white/18" />
-        <div className="absolute left-12 top-23 h-2 w-14 rounded-full bg-orange-300/80" />
-        <div className="absolute left-12 top-28 h-2 w-10 rounded-full bg-slate-200/90" />
-        <div className="absolute left-[42%] top-12 h-3 w-14 rounded-full bg-white/45" />
-        <div className="absolute left-[42%] top-18 h-3 w-24 rounded-full bg-white/20" />
-        <div className="absolute left-[42%] top-28 h-10 w-24 rounded-[10px] bg-white/24" />
-        <div className="absolute left-[48%] top-[116px] h-4 w-12 rounded-full bg-white/78" />
+      <div className="relative h-[7.2rem] overflow-hidden rounded-[0.82rem] bg-[linear-gradient(135deg,#f98b3d_0%,#f26b49_48%,#e04d6f_100%)]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_32%)]" />
+        <div className="absolute left-4 top-3 h-[4.5rem] w-[3rem] rounded-[0.45rem] border border-white/55 bg-white/92 shadow-[0_8px_16px_rgba(0,0,0,0.12)]" />
+        <div className="absolute left-[4.3rem] top-2 h-[5.2rem] w-[5.8rem] rounded-[0.55rem] bg-white/16" />
+        <div className="absolute left-[11rem] top-5 h-[2rem] w-[2rem] rounded-full bg-white/18" />
       </div>
     );
   }
 
-  if (tone === "orange") {
+  if (tone === "fastx") {
     return (
-      <div className="relative h-[208px] overflow-hidden rounded-[22px] bg-[linear-gradient(135deg,#ff7d22_0%,#ff8a26_35%,#fb6f18_100%)]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_32%)]" />
-        <div className="absolute left-10 top-12 h-[132px] w-[86px] rounded-[18px] border border-black/20 bg-white shadow-[0_18px_30px_rgba(0,0,0,0.18)]" />
-        <div className="absolute left-[36%] top-6 z-10 h-[170px] w-[110px] -translate-x-1/2 rounded-[24px] border border-black/20 bg-white shadow-[0_18px_30px_rgba(0,0,0,0.2)]" />
-        <div className="absolute right-12 top-10 h-[150px] w-[96px] rounded-[20px] border border-black/20 bg-white shadow-[0_18px_30px_rgba(0,0,0,0.18)]" />
-        <div className="absolute left-14 top-20 h-6 w-12 rounded bg-lime-400" />
-        <div className="absolute left-14 top-30 h-2 w-10 rounded-full bg-slate-200" />
-        <div className="absolute left-[31%] top-12 h-5 w-10 rounded-full bg-orange-300" />
-        <div className="absolute left-[31%] top-24 h-16 w-16 rounded-full bg-orange-200/80" />
-        <div className="absolute left-[31%] top-42 h-4 w-18 rounded-full bg-red-400/80" />
-        <div className="absolute right-16 top-18 h-6 w-12 rounded bg-lime-400" />
-        <div className="absolute right-16 top-30 h-4 w-14 rounded-full bg-orange-300" />
+      <div className="relative h-[7.2rem] overflow-hidden rounded-[0.82rem] bg-[linear-gradient(135deg,#ff7a20_0%,#ff9327_42%,#f76a14_100%)]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_32%)]" />
+        <div className="absolute left-4 top-4 h-[3.7rem] w-[2.4rem] rounded-[0.45rem] border border-black/15 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.12)]" />
+        <div className="absolute left-[5rem] top-2 z-10 h-[5.6rem] w-[3rem] rounded-[0.75rem] border border-black/15 bg-white shadow-[0_10px_18px_rgba(0,0,0,0.14)]" />
+        <div className="absolute left-[9.1rem] top-4 h-[4.4rem] w-[2.6rem] rounded-[0.55rem] border border-black/15 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.12)]" />
       </div>
     );
   }
 
   return (
-    <div className="relative h-[208px] overflow-hidden rounded-[22px] bg-[linear-gradient(135deg,#1934b9_0%,#2540cd_35%,#1f2fab_100%)]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.14),transparent_28%)]" />
-      <div className="absolute left-12 top-12 h-[142px] w-[88px] rounded-[20px] border border-black/25 bg-white shadow-[0_18px_30px_rgba(0,0,0,0.22)]" />
-      <div className="absolute left-1/2 top-5 z-10 h-[176px] w-[128px] -translate-x-1/2 rounded-[26px] border border-black/25 bg-white shadow-[0_20px_32px_rgba(0,0,0,0.24)]" />
-      <div className="absolute right-9 top-16 h-[132px] w-[82px] rounded-[18px] border border-black/25 bg-white shadow-[0_18px_30px_rgba(0,0,0,0.22)]" />
-      <div className="absolute left-[18%] top-24 h-16 w-14 rounded-[10px] bg-blue-500/90" />
-      <div className="absolute left-[22%] top-46 h-4 w-10 rounded-full bg-blue-200" />
-      <div className="absolute left-1/2 top-28 z-20 h-18 w-18 -translate-x-1/2 rounded-[14px] bg-blue-500/95" />
-      <div className="absolute left-1/2 top-47 z-20 h-3 w-12 -translate-x-1/2 rounded-full bg-blue-300" />
-      <div className="absolute right-[10%] top-26 h-10 w-16 rounded-full border-4 border-blue-300/90" />
-      <div className="absolute right-[12%] top-40 h-12 w-18 rounded-full border-4 border-blue-200/80" />
+    <div className="relative h-[7.2rem] overflow-hidden rounded-[0.82rem] bg-[linear-gradient(135deg,#1e43c5_0%,#2d56e0_42%,#2030aa_100%)]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.16),transparent_30%)]" />
+      <div className="absolute left-4 top-3 h-[4.2rem] w-[2.7rem] rounded-[0.55rem] border border-black/15 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.12)]" />
+      <div className="absolute left-[5.2rem] top-2 z-10 h-[5.8rem] w-[3.2rem] rounded-[0.9rem] border border-black/15 bg-white shadow-[0_10px_18px_rgba(0,0,0,0.14)]" />
+      <div className="absolute left-[10rem] top-4 h-[4rem] w-[2.5rem] rounded-[0.55rem] border border-black/15 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.12)]" />
     </div>
   );
 }
 
 function ProductCard({ product }: { product: ProductCard }) {
   return (
-    <article className="rounded-[24px] border border-black/6 bg-white p-4 shadow-[0_14px_30px_rgba(22,27,45,0.08)] sm:p-5">
-      <ProductPreview tone={product.tone} />
+    <Link
+      href={product.href}
+      target={product.target}
+      className="block w-full transition-transform hover:-translate-y-0.5"
+    >
+      <article className="rounded-[1rem] border border-black/6 bg-white p-3 shadow-[0_10px_24px_rgba(15,23,42,0.06)]">
+        <div className="rounded-[0.95rem] bg-[#f7f5ef] p-2">
+          <ProductImage tone={product.tone} />
+        </div>
 
-      <div className="space-y-6 px-2 pb-2 pt-5">
-        <h3 className="font-heading text-[1.5rem] font-semibold tracking-[-0.03em] text-foreground">
-          {product.title}
-        </h3>
-        <p className="max-w-[31ch] text-[1rem] leading-8 text-foreground">
-          {product.description}
-        </p>
-        <ButtonLink
-          href={product.href}
-          variant="ghost"
-          className="h-auto justify-start rounded-none px-0 py-0 text-[1rem] font-medium text-foreground hover:bg-transparent hover:text-foreground"
-        >
-          Get Started
-          <span aria-hidden="true">→</span>
-        </ButtonLink>
-      </div>
-    </article>
+        <div className="space-y-4 px-1 pb-1 pt-4">
+          <h3 className="font-heading text-[1.25rem] font-medium tracking-[-0.03em] text-foreground">
+            {product.title}
+          </h3>
+          <p className="max-w-[30ch] text-[0.68rem] leading-5 text-foreground/76">
+            {product.description}
+          </p>
+          <h4 className="text-[0.72rem] font-medium text-foreground">
+            Get Started <span aria-hidden="true">→</span>
+          </h4>
+        </div>
+      </article>
+    </Link>
   );
 }
 
 export function ProductsShowcaseSection() {
   return (
-    <section className="bg-background pb-28 pt-8">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-[2.7rem] font-semibold tracking-[-0.05em] text-foreground sm:text-[3rem]">
+    <section className="bg-background pb-24 pt-8">
+      <div className="mx-auto max-w-[68rem] px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h2 className="font-heading text-[2.35rem] font-medium tracking-[-0.05em] text-foreground sm:text-[2.8rem]">
             Our Products
           </h2>
-          <p className="mt-4 text-[1rem] text-muted sm:text-[1.1rem]">
+          <p className="mt-3 text-[0.96rem] text-muted sm:text-[1rem]">
             Exploring excellence in every creation
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
           {productCards.map((product) => (
             <ProductCard key={product.title} product={product} />
           ))}
